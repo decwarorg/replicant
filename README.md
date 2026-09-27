@@ -22,19 +22,32 @@ that has the pidp1 package already installed.
 
     git clone https://github.com/obsolescence/agent-pdp1.git /opt/agent-pdp1
     cd /opt/agent-pdp1
-    ./install.sh        # updates the emulator, 
-						# and installs agent tools
-    ./setup-hermes.sh   # explains/helps with installing Hermes Agent,
-                        #   then wires the skills into Hermes Agent 
-                        #   (explains getting an API key and install guidance)
+    ./install.sh
 
-Both scripts explain each step as they run; every step can be declined.
-The setup-hermes script will guide you through obtaining a Deepseek API key.
-There is no particular reason to use Deepseek-v4-Flash. It is just, at the 
-time of writing, the cheapest. And very much good enough. But Hermes will
-let you use any model, up to Fable if you feel like spending the money.
-But: not necessary. Hermes is good with cheaper models, try that first,
-add other models later on. It can be done 'on the fly'.
+One installer, one menu:
+
+    1) Install basic setup        — update the pidp1 package, rebuild all
+                                    binaries, install the agent tools, test
+                                    the emulator on port 1040. Leaves the
+                                    machine stopped for a clean start.
+    2) Install Hermes Agent       — unattended Hermes install; connect
+                                    DeepSeek (or defer that); wire the six
+                                    skills, pdp1-learnings and SOUL.md into
+                                    the agent; verify with a real round-trip.
+    3) Update/restore Core Skills — pull the latest from GitHub. Edits to
+                                    the six core skills are replaced; your
+                                    own files (pdp1-learnings, SOUL.md) are
+                                    left alone.
+
+Every step explains itself as it runs, and every step can be declined.
+The Hermes step wants a DeepSeek API key — paste it, or point the
+installer at a file that holds one (e.g. ./install.sh ~/.hermes/.env).
+There is no particular reason to use DeepSeek. It is just, at the time
+of writing, the cheapest, and very much good enough. Hermes will work
+with any model — add others later, on the fly.
+
+DRY_RUN=1 ./install.sh simulates the whole thing without changing
+anything; handy as a preview or for testing.
 
 ## What's inside
 
@@ -66,3 +79,4 @@ experience, without messing up the 'canonical knowledge base'.
 
     ./skills/update.sh    # unprotect, git pull, re-protect
 
+(or equivalently: menu option 3 of ./install.sh)
