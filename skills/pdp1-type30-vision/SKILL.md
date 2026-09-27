@@ -182,7 +182,7 @@ test/fixtures/*.snp       golden captures (tictactoe, cube, scatter, empty, demo
 
 ## Provenance
 
-- Capture validated live against the dbg emulator (`pdp1 -t`),
+- Capture validated live against the mainline emulator (`pdp1 -t`),
   15 Aug 2026: circle.rim running at 0o100; 0.5 s capture =
   4224 words / 1716 unique points, extent x=[256-768] y=[256-768] —
   a radius-256 circle centred at (512,512).

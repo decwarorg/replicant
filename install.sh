@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # agent-pdp1 — install
 #
-# Updates the PDP-1 emulator to the dbg branch (where the simulator
-# handles user and agent concurrently), installs the agent tools, and
-# points you at the skills.
+# Updates the PiDP-1 package (and its submodules) to the latest main,
+# rebuilds all binaries (the simulator handles user and agent
+# concurrently), installs the agent tools, and points you at the skills.
 #
 # Steps:
 #   1. take ownership of this directory  (sudo; undo the sudo git clone)
 #   2. stop any running pdp1              (maintenance window; left stopped)
-#   3. emulator update + rebuild          (only the pdp1 binary; no sudo)
+#   3. PiDP-1 update + full rebuild       (all binaries; may ask for sudo)
 #   4. agent tools -> /usr/local/bin      (sudo)
 #   5. smoke test: hello over 1040
 #   6. verify nothing is left running
@@ -17,7 +17,8 @@
 set -u
 
 SELF_DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
-EMU_DIR="/opt/pidp1/src/blincolnlights/pdp1"
+PIDP1_DIR="/opt/pidp1"
+EMU_DIR="$PIDP1_DIR/src/blincolnlights/pdp1"
 BL_DIR="$(dirname "$EMU_DIR")"
 PANEL_BIN="$BL_DIR/panel_pidp1/panel_pidp1"
 EMU_PID=""
@@ -79,34 +80,43 @@ done
 [ -z "$STILL" ] || fail "still running:$STILL — stop it manually (pdp1control stop), then re-run"
 echo "  ok — nothing running"
 
-# ------------------------------------------------------------- emulator step
+# ------------------------------------------------------- PiDP-1 update step
 
-say "emulator update"
-echo "  With the dbg version update, the pdp1 simulator can now handle"
-echo "  user and agent concurrently."
-read -r -p "  Update $EMU_DIR to dbg and rebuild? [Y/n] " ans
+say "PiDP-1 update"
+echo "  The simulator handles user and agent concurrently. This step brings"
+echo "  the PiDP-1 package to its latest revision, rebuilds every binary and"
+echo "  re-applies the panel driver's privilege (it may ask for your sudo"
+echo "  password once)."
+read -r -p "  Update $PIDP1_DIR to the latest main and rebuild all binaries? [Y/n] " ans
 case "${ans:-y}" in
     ""|[Yy]*) ;;
-    *) echo "  Skipped. (You can do it later: see the failsafe update notes in the pdp1-plumbing skill.)"; SKIP_EMU=1 ;;
+    *) echo "  Skipped. You can do it later:  bash $PIDP1_DIR/install/install.sh --recompile"; SKIP_EMU=1 ;;
 esac
 
 if [ -z "${SKIP_EMU:-}" ]; then
-    git -C "$EMU_DIR" fetch origin || fail "git fetch failed — check your network"
-    # no -u: untracked files (built binaries) must never be swept into the
-    # stash — the rebuild below replaces them on disk
-    if git -C "$EMU_DIR" stash push -m "local changes before dbg" 2>/dev/null; then
-        echo "  local changes were stashed:  git stash list  to recover"
+    PIDP1_INSTALL="$PIDP1_DIR/install/install.sh"
+    BR="$(git -C "$PIDP1_DIR" branch --show-current 2>/dev/null)"
+    [ "$BR" = "main" ] || \
+        fail "$PIDP1_DIR is on '${BR:-unknown}' — expected 'main'; fix with:  git -C $PIDP1_DIR checkout main"
+    git -C "$PIDP1_DIR" pull --ff-only || \
+        fail "package update failed — see git output above (offline, or local changes in $PIDP1_DIR)"
+    git -C "$PIDP1_DIR" submodule update --init --recursive || \
+        echo "  WARNING: submodule update failed — check 'git -C $PIDP1_DIR status' when convenient"
+    if grep -q -- '--recompile' "$PIDP1_INSTALL" 2>/dev/null; then
+        echo "  rebuilding all binaries — takes a couple of minutes"
+        bash "$PIDP1_INSTALL" --recompile || fail "the PiDP-1 rebuild failed — see the output above"
+    else
+        echo "  (this pidp1 checkout has no --recompile helper — building the emulator only)"
+        ( cd "$EMU_DIR" && make ) || fail "make failed — see the output above"
+        echo "  for the full rebuild run:  bash $PIDP1_INSTALL"
+        echo "  (answer n to everything except 'Make required PiDP-1 binaries?')"
     fi
-    git -C "$EMU_DIR" checkout dbg || fail "checkout dbg failed — is the branch on origin?"
-    git -C "$EMU_DIR" pull --ff-only origin dbg || \
-        fail "dbg update failed — see git output above (offline, or local commits diverge from origin)"
-    echo "  building the emulator — takes a couple of minutes"
-    ( cd "$EMU_DIR" && make ) || fail "make failed — see the output above"
     [ -x "$EMU_DIR/pdp1" ] || fail "build did not produce $EMU_DIR/pdp1"
-    if [ ! -x "$PANEL_BIN" ]; then
-        echo "  WARNING: the panel driver is missing ($PANEL_BIN) — it was"
-        echo "  probably deleted by an older install.sh. Rebuild it manually:"
-        echo "    make -C $BL_DIR/pinctrl && make -C $BL_DIR/panel_pidp1"
+    [ -x "$PANEL_BIN" ] || \
+        echo "  WARNING: the panel driver is missing ($PANEL_BIN) — run:  bash $PIDP1_INSTALL --recompile"
+    if command -v getcap >/dev/null 2>&1; then
+        getcap "$PANEL_BIN" 2>/dev/null | grep -q cap_sys_nice || \
+            echo "  WARNING: panel RT privilege missing — run:  sudo setcap cap_sys_nice+ep $PANEL_BIN"
     fi
 fi
 
@@ -161,7 +171,7 @@ if [ -z "${SKIP_EMU:-}" ]; then
         echo "  test instance stopped"
     fi
 else
-    echo "  skipped — emulator update was skipped"
+    echo "  skipped — PiDP-1 update was skipped"
 fi
 
 # ------------------------------------------------------------------ skills

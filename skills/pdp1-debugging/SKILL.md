@@ -503,7 +503,7 @@ M[15]!=1`), clean up (`ub *`).
 
 - Protocol: `proto=1`, as `DEBUG_PROTOCOL_SPEC.md` v1.
 - Conformance: `pdp1/test/pdp1dbg_test.py` — **41 pass / 0 fail /
-  1 skip** against the dbg emulator (`pdp1 -t`), 15 Aug 2026.
+  1 skip** against the mainline emulator (`pdp1 -t`), 15 Aug 2026.
 - Live-validated: the worked example in §9 is a real transcript from
   the same session; `pdp1dbg.py` exercised end-to-end (one-shot,
   batch, `--lst` labels).
@@ -512,6 +512,12 @@ M[15]!=1`), clean up (`ub *`).
   remove the file before a clean test run (file hygiene, not an
   interface).
 - 2026-08-16: stdin batch timing — blank-line flush plus `sleep`/
-  `usleep` locals (verified against the dbg emulator; timed-pulse
+  `usleep` locals (verified against the mainline emulator; timed-pulse
   recipe in §9).
+- 2026-09-27: the debug service is mainline — the `dbg` work merged
+  into blincolnlights, pinned by pidp1 main; there is no branch to
+  check out. If `pdp1dbg.py` times out while raw ncat answers only
+  `ok`, the emulator predates the merge: bring pidp1 to latest main
+  and rebuild. (A rebuild does not restart a running process — compare
+  its start time with the binary's mtime.)
 - This skill: v1.0 after the live validation.

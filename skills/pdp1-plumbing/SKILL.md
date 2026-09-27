@@ -85,6 +85,35 @@ cd /opt/pidp1/src/blincolnlights/pdp1
 make                    # builds pdp1 + pdp1_b18
 ```
 
+Full update — package to latest main, ALL binaries rebuilt, privileges
+re-applied; non-interactive except one sudo prompt (needs a real
+terminal for the password):
+
+```bash
+git -C /opt/pidp1 pull --ff-only
+git -C /opt/pidp1 submodule update --init --recursive
+bash /opt/pidp1/install/install.sh --recompile   # 13 targets; exit 0 = all built
+```
+
+On an older checkout without `--recompile`, run `install.sh` and take
+only the "Make required PiDP-1 binaries?" step.
+
+The panel driver's update thread wants SCHED_FIFO (prio 99), so it
+needs `cap_sys_nice` on
+`/opt/pidp1/src/blincolnlights/panel_pidp1/panel_pidp1`. Capabilities
+live on the file: every relink wipes it and the driver silently falls
+back to normal scheduling — `rt: 0` at startup instead of `rt: 1`.
+`--recompile` re-applies it; after any manual rebuild:
+
+```bash
+sudo setcap cap_sys_nice+ep /opt/pidp1/src/blincolnlights/panel_pidp1/panel_pidp1
+getcap /opt/pidp1/src/blincolnlights/panel_pidp1/panel_pidp1   # want cap_sys_nice=ep
+```
+
+(The installer's `chmod +s` lands on the panel_pidp1 *directory* —
+inert; setuid on directories is ignored. GPIO access comes from the
+gpio group.)
+
 Start headless and deterministic for scripts and tests:
 
 ```bash
