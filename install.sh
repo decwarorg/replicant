@@ -645,7 +645,7 @@ walk_basic() {
 
     step_begin 3 5 "Updating PiDP-1 and rebuilding"
     step_ask
-    if ui_confirm "This will stop the PDP-1, update the pidp1 package to the latest main, and rebuild all binaries." n; then
+    if ui_confirm "This will stop the PDP-1, update the pidp1 package to the latest main, and rebuild all binaries." y; then
         ensure_sudo
         act "pdp1control stop" "stopping pdp1 ..." || true
         if ! have pdp1control; then
@@ -1077,7 +1077,7 @@ walk_hermes() {
     local SF="$HERMES_HOME/SOUL.md"
     if [ -e "$SF" ]; then
         step_ask "answer the y/n question at the bottom"
-        if ui_confirm "You already have a SOUL.md. Overwrite it with the package version?" n; then
+        if ui_confirm "You already have a SOUL.md. Overwrite it with the package version?" y; then
             if [ "$DRY" = 0 ]; then cp "$PKG_DIR/hermes-specific/SOUL.md" "$SF"; fi
             step_item "SOUL.md replaced with the package version"
         else
@@ -1157,7 +1157,7 @@ walk_hermes() {
 walk_skills() {
     step_begin 1 3 "Checking the package"
     step_ask
-    if ! ui_confirm "This will update the agent-pdp1 package from GitHub (core-skill edits are replaced)." n; then
+    if ! ui_confirm "This will update the agent-pdp1 package from GitHub (core-skill edits are replaced)." y; then
         finish_screen "${YELLOW}Nothing was changed.${RESET}"
         return
     fi
