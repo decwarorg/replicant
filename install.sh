@@ -1091,6 +1091,8 @@ walk_hermes() {
     step_hint
 
     step_begin 6 6 "Final check"
+    step_note "${YELLOW}Ignore small error messages below.${RESET}"
+    step_note "${DIM}They will generally not impact Hermes use${RESET}"
     act "$(hcmd doctor)" "core checks passed — advisory notes only" || true
     if [ "$DRY" = 1 ]; then
         step_item "Skills verified"
