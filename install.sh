@@ -259,16 +259,16 @@ ui_confirm() {  # $1 = question, $2 = default answer (y|n).  0 = yes
 
 ask_key() {  # collect + validate the DeepSeek key into $KEY ('' = nothing given)
     KEY=''
-    local msg='  Key: ' input key
+    local msg='  Key: ' input key file
     while :; do
         input=''
         if [ "$PLAIN" = 1 ]; then
-            printf '  Paste your DeepSeek API key, or the path to a file that contains it.\n'
+            printf '  Paste your DeepSeek API key, or type the filename containing it.\n'
             printf '%s' "$msg"
             read -r input || true
             printf '\n'
         else
-            emit "  Paste your DeepSeek API key, or the path to a file that contains it."
+            emit "  Paste your DeepSeek API key, or type the filename containing it."
             emit "$msg"
             at "$ROWS" $(( ${#msg} + 1 ))
             read -r input || true
@@ -284,14 +284,18 @@ ask_key() {  # collect + validate the DeepSeek key into $KEY ('' = nothing given
         if [[ "$input" =~ ^sk-[A-Za-z0-9]{16,}$ ]]; then
             KEY="$input"; return 0                     # the key itself
         fi
-        if [ -f "$input" ] && [ -r "$input" ]; then
-            key="$(grep -oE 'sk-[A-Za-z0-9]{16,}' "$input" 2>/dev/null | head -n1)"
+        file="$input"
+        if [ ! -r "$file" ] && [ -r "$HOME/$input" ]; then
+            file="$HOME/$input"            # no path given: assume ~/
+        fi
+        if [ -f "$file" ] && [ -r "$file" ]; then
+            key="$(grep -oE 'sk-[A-Za-z0-9]{16,}' "$file" 2>/dev/null | head -n1)"
             if [ -n "$key" ]; then
                 KEY="$key"; return 0                   # a file that holds the key
             fi
             emit "${YELLOW}  That file contains no DeepSeek key (sk-...) — try again.${RESET}"
         else
-            emit "${YELLOW}  Not a DeepSeek key and not a readable file — try again.${RESET}"
+            emit "${YELLOW}  Not a DeepSeek key, and no readable file — try again (a plain filename is looked up in ~/).${RESET}"
         fi
     done
 }
