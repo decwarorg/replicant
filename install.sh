@@ -102,6 +102,50 @@ clr_line() { printf '\033[2K'; }
 ui_clear() { [ "$PLAIN" = 1 ] && return; printf '\033[r\033[2J\033[H'; }
 ui_region() { [ "$PLAIN" = 1 ] && return; printf '\033[%s;%sr' "$1" "$2"; }
 
+clip_line() {  # $1 = text; cut painted rows to the terminal width (with '…')
+    local s="$1" w=$((COLS - 1)) i=0 n ch out vis
+    [ "$PLAIN" = 1 ] && { printf '%s' "$s"; return; }
+    n=${#s}; [ "$n" -le "$w" ] && { printf '%s' "$s"; return; }   # cheap fast path
+    vis=0
+    while [ "$i" -lt "$n" ]; do
+        ch="${s:$i:1}"
+        if [ "$ch" = $'\e' ]; then
+            i=$((i+1))
+            while [ "$i" -lt "$n" ]; do ch="${s:$i:1}"; i=$((i+1)); case "$ch" in [a-zA-Z]) break ;; esac; done
+        else vis=$((vis+1)); i=$((i+1)); fi
+    done
+    [ "$vis" -le "$w" ] && { printf '%s' "$s"; return; }
+    out=''; vis=0; i=0
+    while [ "$i" -lt "$n" ] && [ "$vis" -lt $((w - 1)) ]; do
+        ch="${s:$i:1}"
+        if [ "$ch" = $'\e' ]; then
+            out+="$ch"; i=$((i+1))
+            while [ "$i" -lt "$n" ]; do ch="${s:$i:1}"; out+="$ch"; i=$((i+1)); case "$ch" in [a-zA-Z]) break ;; esac; done
+            continue
+        fi
+        out+="$ch"; vis=$((vis+1)); i=$((i+1))
+    done
+    printf '%s%s…' "$out" "$RESET"
+}
+
+wrap_into() {  # $1 = text; fills CHUNKS=() with pieces no wider than the screen
+    local s="$1" w=$((COLS - 1)) i=0 vis=0 ch out='' sgr='' esc n
+    n=${#s}
+    CHUNKS=()
+    [ "$w" -lt 8 ] && w=8
+    while [ "$i" -lt "$n" ]; do
+        ch="${s:$i:1}"
+        if [ "$ch" = $'\e' ]; then
+            esc="$ch"; i=$((i+1))
+            while [ "$i" -lt "$n" ]; do ch="${s:$i:1}"; esc+="$ch"; i=$((i+1)); case "$ch" in [a-zA-Z]) break ;; esac; done
+            out+="$esc"; sgr="$esc"; continue
+        fi
+        if [ "$vis" -ge "$w" ]; then CHUNKS+=("$out$RESET"); out="$sgr"; vis=0; fi
+        out+="$ch"; vis=$((vis+1)); i=$((i+1))
+    done
+    CHUNKS+=("$out")
+}
+
 cleanup() {
     [ "$CLEANED" = 1 ] && return 0
     CLEANED=1
@@ -119,11 +163,16 @@ trap 'cleanup; exit 130' INT TERM
 
 # --- bottom log zone (last ~20 lines, refreshed as output arrives) -----------
 BUF=()
-emit() {  # $1 = line (may contain colour)
+emit() {  # $1 = line (may contain colour; long lines wrap, never mangle)
     if [ "$PLAIN" = 1 ]; then
         printf '%s\n' "$1"
     else
-        BUF+=("$1")
+        if [ "${#1}" -le $((COLS - 2)) ]; then
+            BUF+=("$1")
+        else
+            wrap_into "$1"
+            BUF+=("${CHUNKS[@]}")
+        fi
         while [ "${#BUF[@]}" -gt "$BOTTOM_H" ]; do BUF=("${BUF[@]:1}"); done
         redraw_log
     fi
@@ -171,9 +220,11 @@ step_begin() {  # $1 = current step, $2 = total, $3 = title
     fi
 }
 
-paint_line() {  # $1 = row, $2 = full line text
-    at "$1" 1; clr_line; printf '%s' "$2"
-    STEP_AT[$1]="$2"
+paint_line() {  # $1 = row, $2 = full line text (clipped to the screen width)
+    local t
+    t="$(clip_line "$2")"
+    at "$1" 1; clr_line; printf '%s' "$t"
+    STEP_AT[$1]="$t"
 }
 
 step_item() {  # $1 = text; green checkmark (or red cross with a 2nd arg 'bad')
@@ -210,10 +261,11 @@ step_hint() {  # $1 = optional message
         printf '\n'
         return
     fi
-    local row=$((NEXT_ITEM + 1))
+    local row=$((NEXT_ITEM + 1)) cm
     [ "$row" -gt $((SEP - 1)) ] && row=$((SEP - 1))
-    at "$row" 1; clr_line; printf '%s%s%s' "$DIM" "$msg" "$RESET"
-    at "$row" $(( ${#msg} + 1 ))
+    cm="$(clip_line "$msg")"
+    at "$row" 1; clr_line; printf '%s%s%s' "$DIM" "$cm" "$RESET"
+    at "$row" $(( ${#cm} + 1 ))
     read -r _ || true
 }
 
@@ -608,13 +660,28 @@ walk_basic() {
         step_item "PDP-1 machine stopped"
         step_note "${DIM}Maintenance window: the machine is left stopped — restart later with 'pdp1control start'.${RESET}"
         BR="$(git -C "$PIDP1_DIR" branch --show-current 2>/dev/null || true)"
-        if [ "$DRY" = 0 ] && [ "$BR" != "main" ]; then
-            fail_exit "$PIDP1_DIR is on '${BR:-unknown}' — expected 'main'. Fix with:  git -C $PIDP1_DIR checkout main"
+        UPD_OK=""
+        if [ "$DRY" = 1 ]; then
+            act "git -C $PIDP1_DIR pull --ff-only" "Already up to date."
+            UPD_OK=1
+        elif [ "$BR" = "main" ] && act "git -C $PIDP1_DIR pull --ff-only" "Already up to date."; then
+            UPD_OK=1
         fi
-        if act "git -C $PIDP1_DIR pull --ff-only" "Already up to date."; then
+        if [ -n "$UPD_OK" ]; then
             step_item "PiDP-1 package updated to the latest main"
         else
-            fail_exit "the PiDP-1 package update failed — see the output above (offline, or local changes in $PIDP1_DIR?)"
+            step_ask
+            if ui_confirm "Force the PiDP-1 package to the most up to date version? This is OK to do." y; then
+                if act "git -C $PIDP1_DIR fetch origin" "From origin" " * branch            main       -> FETCH_HEAD" \
+                   && act "git -C $PIDP1_DIR checkout -f -B main" "Switched to branch 'main'" \
+                   && act "git -C $PIDP1_DIR reset --hard origin/main" "HEAD is now at the newest main"; then
+                    step_item "PiDP-1 package forced to the most up to date version"
+                else
+                    fail_exit "the forced update failed — check the internet connection, then re-run"
+                fi
+            else
+                stop_exit "Stopped — PiDP-1 was left unchanged. 'pdp1control start' brings the machine back; re-run and answer y to force the update later."
+            fi
         fi
         if ! act "git -C $PIDP1_DIR submodule update --init --recursive"; then
             step_note "${YELLOW}Submodule update failed — check 'git -C $PIDP1_DIR status' when convenient.${RESET}"
