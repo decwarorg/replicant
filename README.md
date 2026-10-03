@@ -57,11 +57,11 @@ good after an hour or two! You chat with your expert through its own window, whi
     </td>
     <td align="center" width="25%">
       <img src="https://obsolescence.dev/pidp1-sw/agent-pdp1/hops.webp" width="100%">
-      Hopalong radiant attractor  
+      Hopalong radiant attractor<br>
     </td>
     <td>
 Hopalong was ported without human intervention from Javascript in 20 minutes. The agent wrote 
-      <a href="https://obsolescence.dev/pidp1-sw/agent-pdp1/hops.html">this page</a>. It depressed me: the end of democoding?      
+      <a href="https://obsolescence.dev/pidp1-sw/agent-pdp1/hops.html">this page</a>. It depressed me: a sign that the end of democoding is near?
     </td>
   </tr>
 </table>
