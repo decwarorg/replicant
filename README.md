@@ -9,7 +9,7 @@ learn how to use the machine, faster, and more enjoyably.
 PDP-1 computer. See [PiDP-1 web site](https://obsolescence.dev/pdp1.html)</i>
 
 
-> It is great to have a replica PDP-1 Hacker sit next to you at the front panel. Perhaps having replica Hackers to chat to is just as important as having replicas of their old computers?
+> It is great to have a proper PDP-1 Hacker sit next to you at the front panel. Perhaps having replica Hackers to chat to is just as important as having replicas of their old computers?
 
 ## The idea
 
