@@ -105,7 +105,7 @@ sudo git clone https://github.com/obsolescence/agent-pdp1.git
 cd agent-pdp1
 ./install.sh
 ```
-From now on, to start working with this: do the usual `pdp1control start` command, switch the power on (top right of the front panel). Then type `hermes` if you want your companion alongside you. **For now, use the PiDP-1 GUI setup, the web server alternative is not tested thoroughly yet**.
+From now on, to start working with this: do the usual `pdp1control start` command, switch the power on (top right of the front panel). Then type `hermes` any time you want your companion alongside you. **For now, use the PiDP-1 GUI setup, the web server alternative is not tested thoroughly yet**.
 
 Works on a PiDP-1 (Pi 4/5, 4 GB RAM; untested: 2 GB RAM). If you don't have
 one, install this after the [pidp1](https://github.com/obsolescence/pidp1)
