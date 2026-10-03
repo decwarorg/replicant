@@ -5,10 +5,13 @@ for your replica PDP-1. It sits next to you at the front panel and helps you
 learn how to use the machine, faster, and more enjoyably. For any user, from
 beginner to advanced.
 
+<img src="https://obsolescence.dev/images/pidp1/agent-pdp1.png" align="right" width="350">
 
-> Discover how much fun it is to have a replica PDP-1 Hacker sit next to you
-> at the front panel! Having replica Hackers to chat to is just as important
-> as having replicas of their old computers?
+The PiDP-1 is a replica of the original Digital Equipment Corporation
+PDP-1 computer. It reproduces the original front panel and allows the
+machine to be used much as the original was.
+
+> It is to have a replica PDP-1 Hacker sit next to you at the front panel! Perhaps having replica Hackers to chat to is just as important as having replicas of their old computers?
 
 ## The idea
 
