@@ -1023,19 +1023,19 @@ walk_hermes() {
         else
             fail_exit "could not store the API key — see the output above"
         fi
-        emit "For PDP-1 work, 'max' reasoning is strongly recommended — careful"
-        emit "machine-level work, and only a small extra cost on DeepSeek."
+        emit "For PDP-1 work, 'medium' reasoning is the default — good for regular"
+        emit "chats; raise it to 'max' when you want it to write a program."
         step_ask "answer the reasoning question at the bottom"
-        if ui_confirm "Set reasoning to max for this agent?" y; then
-            if act "$(hcmd config set --force agent.reasoning_effort max)" "✓ Set agent.reasoning_effort = max"; then
-                step_item "Reasoning effort set to max"
-                step_note "${DIM}(you might want to change that to 'high' later on)${RESET}"
+        if ui_confirm "Set reasoning to medium for this agent?" y; then
+            if act "$(hcmd config set --force agent.reasoning_effort medium)" "✓ Set agent.reasoning_effort = medium"; then
+                step_item "Reasoning effort set to medium"
+                step_note "${DIM}(you can raise it to 'max' later on)${RESET}"
             else
                 fail_exit "could not set agent.reasoning_effort — see the output above"
             fi
         else
             step_note "${YELLOW}Reasoning not changed — set it later:${RESET}"
-            step_note "${DIM}    $HERMES_HINT config set --force agent.reasoning_effort max${RESET}"
+            step_note "${DIM}    $HERMES_HINT config set --force agent.reasoning_effort medium${RESET}"
         fi
     else
         step_note "${YELLOW}DeepSeek connection skipped — connect your preferred model later.${RESET}"
