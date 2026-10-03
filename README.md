@@ -68,7 +68,7 @@ The Hopalong was ported without human intervention from a Javascript example, in
 
 
 ## But it is meant as a tutor, not a vibe-coder
-<img src="https://obsolescence.dev/images/pidp1/agent-pdp1.png" align="right" width="250">
+<img src="https://obsolescence.dev/pidp1-sw/agent-pdp1/tour.png" align="right" width="250">
 
 Admittedly, as a side-effect, the AI becomes a competent PDP-1 coding
 agent. It was trained doing code reviews of major PDP-1 programs, and it
