@@ -2,8 +2,7 @@
 <img src="https://obsolescence.dev/images/pidp1/agent-pdp1.png" align="right" width="250">
 
 **An AI companion for the PiDP-1** — installs a tutor, guide, and capable copilot
-on your replica PDP-1. It sits next to you at the front panel and helps you
-learn how to use the machine, faster, and more enjoyably.
+on your replica PDP-1. It sits next to you, and can see the display/operate the front panel just like you. Learn how to use the PDP-1 faster, and more enjoyably.
 
 <i>The PiDP-1 is a replica of the original Digital Equipment Corporation
 PDP-1 computer. 
