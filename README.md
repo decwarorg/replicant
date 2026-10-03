@@ -22,11 +22,12 @@ up and improved. So, feel free to fork, recycle, replace, whatever.
 
 ## What you get
 
-It can install a complete setup on your PiDP-1 (or any Linux machine). All it
-needs is an external LLM to connect to; we suggest the cheap, good-enough
-**DeepSeek**. The PDP-1 "problem set" is small enough, and $10 gives you
-months of playtime, and there is no subscription: when the money runs out,
-you are off the hook, unless you want more playtime.
+It can install a complete open-source Hermes Agent setup on your PiDP-1 
+(or any Linux machine). All it needs is an external LLM to connect to.
+As of November 2026, I'd suggest the cheap, good-enough **DeepSeek**, but it is up to you. 
+The PDP-1 "problem set" is small enough, and Deepseek's $10 gives you
+months of playtime. And there is no subscription: when the money runs out,
+you are off the hook, unless you want more playtime. I like that.
 
 Everything comes in two independent parts:
 
