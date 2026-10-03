@@ -6,14 +6,15 @@ on your replica PDP-1. It sits next to you at the front panel and helps you
 learn how to use the machine, faster, and more enjoyably.
 
 <i>The PiDP-1 is a replica of the original Digital Equipment Corporation
-PDP-1 computer. See [PiDP-1 web site](https://obsolescence.dev/pdp1.html)</i>
+PDP-1 computer. 
+<br>See the [PiDP-1 web site](https://obsolescence.dev/pdp1.html)</i>
 
 
 > It is great to have a proper PDP-1 Hacker sit next to you at the front panel. Perhaps having replica Hackers to chat to is just as important as having replicas of their old computers?
 
 ## The idea
 
-I wanted to make an AI companion to the PiDP-1. It should be able to
+I wanted to make an AI companion to the PiDP-1. It is able to
 vibe-code, but the real purpose is to help people learn how to use the PDP-1 —
 more quickly, and more enjoyably. Any user, from beginner to advanced.
 
@@ -27,7 +28,7 @@ It can install a complete open-source Hermes Agent setup on your PiDP-1
 As of November 2026, I'd suggest the cheap, good-enough **DeepSeek**, but it is up to you. 
 The PDP-1 "problem set" is small enough, and Deepseek's $10 gives you
 months of playtime. And there is no subscription: when the money runs out,
-you are off the hook, unless you want more playtime. I like that.
+you are off the hook, unless you want more playtime. I like that; the install script will help set you up in a few minutes.
 
 This project comes in three independent parts:
 
