@@ -69,7 +69,6 @@ Hopalong was ported without human intervention from Javascript in 20 minutes. Th
 
 
 ## But it is meant as a tutor, not a vibe-coder
-<img src="https://obsolescence.dev/pidp1-sw/agent-pdp1/tour.png?v=2" align="right" width="350">
 
 Admittedly, as a side-effect, the AI becomes a competent PDP-1 coding
 agent. It was trained doing code reviews of major PDP-1 programs, and it
@@ -78,6 +77,8 @@ wrote some nice demo code, like the tic-tac-toe game above.
 But, personal view: retrocomputing is best left AI-free in that sense. There
 is no sense of achievement or historical value in letting an AI write an
 amazing new program on a PDP-1.
+
+<img src="https://obsolescence.dev/pidp1-sw/agent-pdp1/tour.png?v=2" align="right" width="350">
 
 Instead, its goal is to be a **tutor**, click to zoom the screen shot. It can teach you to operate
 the machine, teach assembly programming, help find bugs. And also, **give you
@@ -217,11 +218,11 @@ was spent getting them effective; improving this curated PDP-1 knowledge is
 what we think the real value here is.
 
 To close, again, our intention. Preserving PDP-1 legacy is not about vibe
-coding — this agent can do that, but:
+coding — this agent can do that, but computer history should be free from AI, IMO.
 
-> Computer history should be free from AI, in fact.
->
-> But as people with knowledge of the historical machine start to become
+> But...
+> 
+> As people with knowledge of the historical machine start to become
 > scarce, an AI tutor and guide is a very legitimate way of keeping PDP-1
 > history alive.
 
