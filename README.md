@@ -47,28 +47,31 @@ good after an hour or two! You chat with your expert through its own window, whi
 
 <table>
   <tr>
-    <td align="center" width="33%">
+    <td align="center" width="25%">
       <img src="https://obsolescence.dev/pidp1-sw/agent-pdp1/rot.webp" width="100%">
       <br>Rotating cube
     </td>
-    <td align="center" width="33%">
+    <td align="center" width="25%">
       <img src="https://obsolescence.dev/pidp1-sw/agent-pdp1/tic.webp" width="100%">
       <br>Tic-tac-toe
     </td>
-    <td align="center" width="33%">
+    <td align="center" width="25%">
       <img src="https://obsolescence.dev/pidp1-sw/agent-pdp1/hops.webp" width="100%">
       Hopalong radiant attractor  
     </td>
+    <td>
+The Hopalong was written without human intervention from just a link to the formula, in about 20 minutes. The agent wrote
+      [this](https://obsolescence.dev/pidp1-sw/agent-pdp1/hops.html) if you care. That mostly depressed me, it smells like the end of democoding.      
+    </td>
   </tr>
 </table>
-The Hopalong radiant attractor, as an example, was written without human intervention from just a link to the formula, in about 20 minutes. The agent wrote [this](https://obsolescence.dev/pidp1-sw/agent-pdp1/hops.html) page for it
-, in case you care. That mostly depressed me, it smells like the end of democoding.
 
-## Meant as a tutor, not a vibe-coder
 
-But yes, as a side-effect of all this, the AI becomes a competent PDP-1 coding
+## But it is meant as a tutor, not a vibe-coder
+
+Admittedly, as a side-effect, the AI becomes a competent PDP-1 coding
 agent. It was trained doing code reviews of major PDP-1 programs, and it
-wrote some nice demo code, like a tic-tac-toe game.
+wrote some nice demo code, like the tic-tac-toe game above.
 
 But, personal view: retrocomputing is best left AI-free in that sense. There
 is no sense of achievement or historical value in letting an AI write an
