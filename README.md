@@ -57,7 +57,7 @@ good after an hour or two! You chat with your expert through its own window, whi
     </td>
     <td align="center" width="25%">
       <img src="https://obsolescence.dev/pidp1-sw/agent-pdp1/hops.webp" width="100%">
-      Hopalong radiant attractor<br>
+      Hopalong radiant attractor<br>(click to zoom!)
     </td>
     <td>
 Hopalong was ported without human intervention from Javascript in 20 minutes. The agent wrote 
@@ -114,7 +114,7 @@ everything else stays the same.
 The installer presents a menu. Every step explains itself, and every step can be
 declined:
 
-1. **Basic setup** — update the pidp1 package, installthe agent tools.
+1. **Basic setup** — update the pidp1 package, install the agent tools.
 2. **Hermes Agent** — setup Hermes, connect DeepSeek (or defer
    that), add the skills into the agent.
 3. **Update/restore the core skills** — an update function. Pull the latest from GitHub. Edits you made to
