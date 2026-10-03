@@ -1,17 +1,15 @@
 # Agent-PDP1
+<img src="https://obsolescence.dev/images/pidp1/agent-pdp1.png" align="right" width="250">
 
-**An AI companion for the PiDP-1** — a tutor, guide, and capable copilot
-for your replica PDP-1. It sits next to you at the front panel and helps you
-learn how to use the machine, faster, and more enjoyably. For any user, from
-beginner to advanced.
+**An AI companion for the PiDP-1** — installs a tutor, guide, and capable copilot
+on your replica PDP-1. It sits next to you at the front panel and helps you
+learn how to use the machine, faster, and more enjoyably.
 
-<img src="https://obsolescence.dev/images/pidp1/agent-pdp1.png" align="right" width="350">
+<i>The PiDP-1 is a replica of the original Digital Equipment Corporation
+PDP-1 computer. See [PiDP-1 web site](https://obsolescence.dev/pdp1.html)</i>
 
-The PiDP-1 is a replica of the original Digital Equipment Corporation
-PDP-1 computer. It reproduces the original front panel and allows the
-machine to be used much as the original was.
 
-> It is to have a replica PDP-1 Hacker sit next to you at the front panel! Perhaps having replica Hackers to chat to is just as important as having replicas of their old computers?
+> It is great to have a replica PDP-1 Hacker sit next to you at the front panel. Perhaps having replica Hackers to chat to is just as important as having replicas of their old computers?
 
 ## The idea
 
@@ -24,9 +22,9 @@ up and improved. So, feel free to fork, recycle, replace, whatever.
 
 ## What you get
 
-It installs a complete setup on your PiDP-1 (or any Linux machine). All it
+It can install a complete setup on your PiDP-1 (or any Linux machine). All it
 needs is an external LLM to connect to; we suggest the cheap, good-enough
-**DeepSeek** — the PDP-1 "problem set" is small for an AI, $10 gives you
+**DeepSeek**. The PDP-1 "problem set" is small enough, and $10 gives you
 months of playtime, and there is no subscription: when the money runs out,
 you are off the hook, unless you want more playtime.
 
