@@ -68,6 +68,7 @@ The Hopalong was ported without human intervention from a Javascript example, in
 
 
 ## But it is meant as a tutor, not a vibe-coder
+<img src="https://obsolescence.dev/images/pidp1/agent-pdp1.png" align="right" width="250">
 
 Admittedly, as a side-effect, the AI becomes a competent PDP-1 coding
 agent. It was trained doing code reviews of major PDP-1 programs, and it
@@ -77,7 +78,7 @@ But, personal view: retrocomputing is best left AI-free in that sense. There
 is no sense of achievement or historical value in letting an AI write an
 amazing new program on a PDP-1.
 
-Instead, its goal is to be a **tutor**. It can teach you to operate
+Instead, its goal is to be a **tutor**, click to zoom the screen shot. It can teach you to operate
 the machine, teach assembly programming, help find bugs. And also, **give you
 an interactive tour** through the process of writing code in ET, assembling it,
 using DDT. Or show you how to work in Lisp. Or take you through a tour of the
