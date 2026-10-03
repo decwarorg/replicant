@@ -29,20 +29,19 @@ The PDP-1 "problem set" is small enough, and Deepseek's $10 gives you
 months of playtime. And there is no subscription: when the money runs out,
 you are off the hook, unless you want more playtime. I like that.
 
-Everything comes in two independent parts:
+This project comes in three independent parts:
 
-- **The skills** — markdown files that make any AI you like into a PDP-1
+-- **The skills** — markdown files that make any AI you like into a PDP-1
   expert.
-- **The shared machine** — a companion update in the pidp1 repo itself, so
+-- **Code to share the PiDP-1** — a companion update in the pidp1 repo itself, so
   your AI has the same access to the PDP-1 as you: it can see and type on the
   typewriter, see and control the front panel, and watch the Type 30 graphics
   display. The install script will do that update for you.
-
-And if you want it: this also installs a **turn-key Hermes Agent** on the
-PiDP-1 — [Hermes](https://hermes-agent.nousresearch.com/docs) is an
+-- And if you want it: this also installs a **turn-key Hermes Agent** on the
+PiDP-1 to use the above. [Hermes](https://hermes-agent.nousresearch.com/docs) is an
 open-source AI agent that runs locally, and it is charming because it learns
 as you use it: your preferences, and its own past mistakes. It really gets
-good after an hour or two! You chat with your expert through its own window.
+good after an hour or two! You chat with your expert through its own window, whilst it can handle the PDP-1 just as you can.
 
 ## Eye candy
 
