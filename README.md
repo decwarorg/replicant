@@ -50,11 +50,11 @@ good after an hour or two! You chat with your expert through its own window, whi
   <tr>
     <td align="center" width="25%">
       <img src="https://obsolescence.dev/pidp1-sw/agent-pdp1/rot.webp" width="100%">
-      <br>Rotating cube
+      <br>Rotating cube<br><br>
     </td>
     <td align="center" width="25%">
       <img src="https://obsolescence.dev/pidp1-sw/agent-pdp1/tic.webp" width="100%">
-      <br>Tic-tac-toe
+      <br>Tic-tac-toe<br><br>
     </td>
     <td align="center" width="25%">
       <img src="https://obsolescence.dev/pidp1-sw/agent-pdp1/hops.webp" width="100%">
@@ -62,7 +62,7 @@ good after an hour or two! You chat with your expert through its own window, whi
     </td>
     <td>
 Hopalong was ported without human intervention from Javascript in 20 minutes. The agent wrote 
-      [this](https://obsolescence.dev/pidp1-sw/agent-pdp1/hops.html). It depressed me: the end of democoding?      
+      <a href="https://obsolescence.dev/pidp1-sw/agent-pdp1/hops.html">this page</a>. It depressed me: the end of democoding?      
     </td>
   </tr>
 </table>
