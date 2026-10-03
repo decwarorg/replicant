@@ -49,9 +49,9 @@ good after an hour or two! You chat with your expert through its own window, whi
 
 *Tic-tac-toe · Rotating cube · Dodecahedron · Hello world — screenshots on the way.*
 
-## A tutor, not a vibe-coder
+## Meant as a tutor, not a vibe-coder
 
-As a side-effect of all this, the AI becomes a competent PDP-1 coding
+But yes, as a side-effect of all this, the AI becomes a competent PDP-1 coding
 agent. It was trained doing code reviews of major PDP-1 programs, and it
 wrote some nice demo code, like a tic-tac-toe game.
 
@@ -91,7 +91,7 @@ one, install this after the [pidp1](https://github.com/obsolescence/pidp1)
 package, on just any Linux laptop — you get a virtual front panel, and
 everything else stays the same.
 
-One installer, one menu; every step explains itself, and every step can be
+The installer presents a menu. Every step explains itself, and every step can be
 declined:
 
 1. **Basic setup** — update the pidp1 package, rebuild all binaries, install
@@ -104,16 +104,15 @@ declined:
 `DRY_RUN=1 ./install.sh` simulates the whole thing without changing anything
 — handy as a preview, or for testing.
 
-The Hermes step wants a DeepSeek API key — paste it, or point the installer
-at a file that holds one (`./install.sh ~/.hermes/.env`). There is no
+The Hermes step wants a DeepSeek API key — type/paste it in, or point the installer
+at a file that holds one (like ~/my-api-key.txt). There is no
 particular reason to use DeepSeek: it is just, at the time of writing, the
 cheapest model that is very much good enough. Hermes runs any model — add
-others later, on the fly.
+others later, things will evolvo.
 
 ## What's inside
 
-**`skills/`** — the core of the project: the markdown files that make an AI
-a PDP-1 guide/expert. Frozen and human-curated.
+**`skills/`** — the core of the project. Readable markdown files with PDP-1 knowledge. Frozen and human-curated.
 
 - **pdp1-assembly** — instruction set, MACRO-1, patterns
 - **pdp1-debugging** — the port-1040 protocol, recipes, the pdp1dbg helper client
@@ -124,7 +123,7 @@ a PDP-1 guide/expert. Frozen and human-curated.
 
 **`hermes-specific/`** — `SOUL.md` (the rules file Hermes reads on every
 request), and the `pdp1-learnings` template: the agent's own learning file,
-copied per install, never shared.
+copied per install, never shared. Read it and change it to your liking.
 
 **`install.sh`** — the turn-key installer.
 
@@ -163,7 +162,7 @@ to improve the core skills. You can also do that locally:
    skills, and ask it to go through each learning with you, so you can judge
    what is useful and what is not. Or, of course, tell Hermes to do it for
    itself.
-3. `/opt/agent-pdp1/skills/protect.sh` — restore the write protection.
+3. `/opt/agent-pdp1/skills/protect.sh` — restore the write protection when you're done.
 
 There is also `/opt/agent-pdp1/skills/update.sh` (or menu option 3 of the
 installer): it restores your local core skills to the originals from the
@@ -180,10 +179,10 @@ email if you are a PiDP-1 user ;-)
 
 ## Tips
 
-Tell Hermes to be interactive with you, and not to go off figuring things out alone. You want to say things like that regularly, so it remembers.
-Set its `/reasoning` to medium or low for regular chats, maybe to `max` or `high` when you want it to write a program. Tell it to be concise.
-Now and then, tell it to curate its new learnings; I recommend you ask it to that together with you.
-
+* Tell Hermes to be interactive with you, and not to go off figuring things out alone. You want to say things like that regularly, so it remembers.
+* Set its `/reasoning` to medium or low for regular chats, maybe to `max` or `high` when you want it to write a program. Tell it to be concise.
+* Now and then, tell it to curate its new learnings; I recommend you ask it to that together with you.
+* Give it an hour or two of use to get settled in (proving I have some work to do still!).
 
 ## In closing
 
@@ -208,4 +207,5 @@ coding — this agent can do that, but:
 
 ## License
 
+Ugh. Lawyers.
 MIT — see [LICENSE](LICENSE). Fork it, recycle it, replace it.
