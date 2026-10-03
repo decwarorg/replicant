@@ -86,7 +86,7 @@ an interactive tour** through the process of writing code in ET, assembling it,
 using DDT. Or show you how to work in Lisp. Or take you through a tour of the
 best graphics demos.
 
-Almost nobody still has an experienced PDP-1 hacker around. So it makes sense
+Almost nobody still has an experienced PDP-1 hacker nearby. So it makes sense
 to have an AI take that role; it will make learning about the PDP-1 much
 faster and much more fun.
 
