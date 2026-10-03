@@ -48,20 +48,21 @@ good after an hour or two! You chat with your expert through its own window, whi
 <table>
   <tr>
     <td align="center" width="33%">
-      <img src="https://obsolescence.dev/pidp1-sw/rot.webp" width="100%">
+      <img src="https://obsolescence.dev/pidp1-sw/agent-pdp1/rot.webp" width="100%">
       <br>Rotating cube
     </td>
     <td align="center" width="33%">
-      <img src="https://obsolescence.dev/pidp1-sw/tac.webp" width="100%">
+      <img src="https://obsolescence.dev/pidp1-sw/agent-pdp1/tic.webp" width="100%">
       <br>Tic-tac-toe
     </td>
     <td align="center" width="33%">
-      <img src="https://obsolescence.dev/pidp1-sw/hops.webp" width="100%">
+      <img src="https://obsolescence.dev/pidp1-sw/agent-pdp1/hops.webp" width="100%">
       Hopalong radiant attractor  
     </td>
   </tr>
 </table>
-The Hopalong radiant attractor, as an example, was written without human intervention from just a link to the formula, in about 20 minutes. The agent wrote [this](https://obsolescence.dev/pidp1-sw/agent-pdp1/hops.html) page for it, in case you care. That mostly depressed me, it smells like the end of democoding.
+The Hopalong radiant attractor, as an example, was written without human intervention from just a link to the formula, in about 20 minutes. The agent wrote [this](https://obsolescence.dev/pidp1-sw/agent-pdp1/hops.html) page for it
+, in case you care. That mostly depressed me, it smells like the end of democoding.
 
 ## Meant as a tutor, not a vibe-coder
 
