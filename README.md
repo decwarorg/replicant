@@ -93,7 +93,7 @@ To see some nice demonstrations:
 
 - ask for a **code review of something like the DDT source code** — the
   code-review skill is an amazing teacher, and you will see exactly how
-  powerful this tutor can be;
+  powerful this tutor can be. Here is an [example](https://obsolescence.dev/pidp1-sw/agent-pdp1/ddt_phase7_changelog.md) of what studying the DDT source code added during the training process.
 - new to the PDP-1? Ask for the **assembly tour**;
 - or just ask about the **history of demo coding** on the PDP-1.
 
