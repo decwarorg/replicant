@@ -61,8 +61,8 @@ good after an hour or two! You chat with your expert through its own window, whi
       Hopalong radiant attractor  
     </td>
     <td>
-The Hopalong was ported without human intervention from a Javascript example, in about 20 minutes. The agent wrote
-      [this](https://obsolescence.dev/pidp1-sw/agent-pdp1/hops.html) if you care. That mostly depressed me, it smells like the end of democoding.      
+Hopalong was ported without human intervention from Javascript in 20 minutes. The agent wrote 
+      [this](https://obsolescence.dev/pidp1-sw/agent-pdp1/hops.html). It depressed me: the end of democoding?      
     </td>
   </tr>
 </table>
