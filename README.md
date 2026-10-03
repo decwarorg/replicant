@@ -114,26 +114,24 @@ everything else stays the same.
 The installer presents a menu. Every step explains itself, and every step can be
 declined:
 
-1. **Basic setup** — update the pidp1 package, rebuild all binaries, install
-   the agent tools, test the emulator on port 1040.
-2. **Hermes Agent** — the unattended agent setup: connect DeepSeek (or defer
-   that), wire the skills, `SOUL.md` and `pdp1-learnings` into the agent.
-3. **Update/restore the core skills** — pull the latest from GitHub; edits to
-   the core skills are replaced, your own files are left alone.
+1. **Basic setup** — update the pidp1 package, installthe agent tools.
+2. **Hermes Agent** — setup Hermes, connect DeepSeek (or defer
+   that), add the skills into the agent.
+3. **Update/restore the core skills** — an update function. Pull the latest from GitHub. Edits you made to
+   the core skills are replaced, but your PDP-1-Learnings are left alone.
 
-`DRY_RUN=1 ./install.sh` simulates the whole thing without changing anything
+`DRY_RUN=1 ./install.sh` simulates the install without changing anything
 — handy as a preview, or for testing.
 
-The Hermes step wants a DeepSeek API key — type/paste it in, or point the installer
+The Hermes step asks for a DeepSeek API key — type/paste it in, or point the installer
 at a file that holds one (like ~/my-api-key.txt). There is no
 particular reason to use DeepSeek: it is just, at the time of writing, the
-cheapest model that is very much good enough. Hermes runs any model — add
-others later, things will evolvo.
+cheapest model that is good enough. Hermes runs any model — add
+others later, things will evolve.
 
 ## What's inside
 
 **`skills/`** — the core of the project. Readable markdown files with PDP-1 knowledge. Frozen and human-curated.
-
 - **pdp1-assembly** — instruction set, MACRO-1, patterns
 - **pdp1-debugging** — the port-1040 protocol, recipes, the pdp1dbg helper client
 - **pdp1-plumbing** — ports, copilot etiquette, building / starting / loading / updating
@@ -142,10 +140,9 @@ others later, things will evolvo.
 - **pdp1-code-review** — structured code review workflow
 
 **`hermes-specific/`** — `SOUL.md` (the rules file Hermes reads on every
-request), and the `pdp1-learnings` template: the agent's own learning file,
-copied per install, never shared. Read it and change it to your liking.
+request), and the `pdp1-learnings` template: the agent's own learning file. Read it and change it to your liking. Perhaps share it with us so we can improve the knowledge base.
 
-**`install.sh`** — the turn-key installer.
+**`install.sh`** — the installer script. Tested on Raspberry Pi OS and Ubuntu.
 
 None of this is Hermes-specific — and nothing depends on DeepSeek, either.
 The skills are plain markdown, and most any AI will absorb them; Claude Code,
@@ -154,8 +151,8 @@ machine the same way you do is described in the skills files themselves.
 
 ### The pidp1 side
 
-As part of this project, the base pidp1 software was updated so an AI can
-share the PiDP-1 with you — useful for future projects as well. And the
+As part of this project, the base pidp1 simulator was updated so an AI can
+share the PiDP-1 with you. Useful for future projects as well. And the
 PDP-1 simulator gained a massively improved debugger: useful for the AI, so
 it is not forced to debug over the front panel all the time; useful for
 human PDP-1 hackers, too. Again, described in the skills files.
