@@ -49,6 +49,7 @@ NC=""
 EMU_PID=""
 STREAM_TMP=""
 DL_TMP=""
+CURLH=""
 case "${DRY_RUN:-0}" in 1|yes|true) DRY=1 ;; *) DRY=0 ;; esac
 KEY_FILE="${1:-}"
 KEY=""
@@ -155,6 +156,7 @@ cleanup() {
     fi
     [ -n "$STREAM_TMP" ] && rm -f "$STREAM_TMP"
     [ -n "$DL_TMP" ] && rm -f "$DL_TMP"
+    [ -n "$CURLH" ] && rm -rf "$CURLH"
     if [ "$PLAIN" = 0 ]; then printf '\033[r\033[?7h%s\n' "$RESET"; fi
 }
 trap cleanup EXIT
@@ -906,7 +908,22 @@ walk_hermes() {
         emit "$HVER"
         step_item "Hermes is already installed — skipping the download"
     else
+        step_note "${DIM}Network note: this step fetches over HTTP/1.1 — avoids a known curl HTTP/2 failure on some networks.${RESET}"
         emit "Downloading the official installer ..."
+        # Some networks break libcurl's HTTP/2 transfers to GitHub's release
+        # CDN (curl exit 16, "Error in the HTTP2 framing layer"), and the
+        # upstream installer's pinned-uv download has no fallback for that
+        # error. Give this step's curl traffic HTTP/1.1 via a throwaway
+        # config dir — CURL_HOME — so no file of the user's is touched.
+        if [ "$DRY" = 0 ]; then
+            CURLH="$(mktemp -d 2>/dev/null)" || CURLH="/tmp/agent-pdp1-curl.$$"
+            mkdir -p "$CURLH"
+            if [ -f "$HOME/.curlrc" ]; then
+                cat "$HOME/.curlrc" > "$CURLH/.curlrc" 2>/dev/null || :
+            fi
+            printf '\n--http1.1\n' >> "$CURLH/.curlrc"
+            export CURL_HOME="$CURLH"
+        fi
         if [ "$DRY" = 1 ]; then
             DL_TMP="/tmp/hermes-install.sh"
         else
@@ -931,6 +948,10 @@ walk_hermes() {
             fail_exit "the Hermes installer failed — see the output above"
         fi
         if [ "$DRY" = 0 ]; then
+            # undo this step's temporary resources (curl workaround, installer script)
+            unset CURL_HOME
+            [ -n "$CURLH" ] && rm -rf "$CURLH"
+            CURLH=""
             rm -f "$DL_TMP"; DL_TMP=""
             export PATH="$HOME/.local/bin:$PATH"
             HERMES_BIN="$(command -v hermes 2>/dev/null || true)"
