@@ -105,6 +105,10 @@ sudo git clone https://github.com/obsolescence/agent-pdp1.git
 cd agent-pdp1
 ./install.sh
 ```
+
+> [!NOTE]
+> The install script will download and install Hermes for you through their headless install option. The user-friendly way. But Hermes is a bit of a moving target, it depends on - well, lots of Linux dependency hell it seems. So: if the Hermes install through my install script breaks: not a problem. Then, just install Hermes yourself, manually. Easily googled. And rerun the install script afterwards to let it complete the Hermes setup.
+
 From now on, to start working with this: do the usual `pdp1control start` command, switch the power on (top right of the front panel). Then type `hermes` any time you want your companion alongside you. **For now, use the PiDP-1 GUI setup, the web server alternative is not tested thoroughly yet**.
 
 Works on a PiDP-1 (Pi 4/5, 4 GB RAM; untested: 2 GB RAM). If you don't have
