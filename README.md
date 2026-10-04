@@ -33,7 +33,7 @@ This project comes in three independent parts:
 
 * **The skills** — markdown files that make any AI you like into a PDP-1
   expert.
-* **Code to share the PiDP-1** — a companion update in the pidp1 repo itself, so
+* **Code to share the PiDP-1** — a companion update in the [pidp1 repo](https://github.com/obsolescence/pidp1) itself, so
   your AI has the same access to the PDP-1 as you: it can see and type on the
   typewriter, see and control the front panel, and watch the Type 30 graphics
   display. The install script will do that update for you.
@@ -153,7 +153,7 @@ machine the same way you do is described in the skills files themselves.
 
 ### The pidp1 side
 
-As part of this project, the base pidp1 simulator was updated so an AI can
+As part of this project, the base [pidp1 simulator](https://github.com/obsolescence/pidp1) was updated so an AI can
 share the PiDP-1 with you. Useful for future projects as well. And the
 PDP-1 simulator gained a massively improved debugger: useful for the AI, so
 it is not forced to debug over the front panel all the time; useful for
