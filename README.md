@@ -43,7 +43,7 @@ open-source AI agent that runs locally, and it is charming because it learns
 as you use it: your preferences, and its own past mistakes. It really gets
 good after an hour or two! You chat with your expert through its own window, whilst it can handle the PDP-1 just as you can.
 
-## Eye candy (click to zoom the Type 30 display)
+## Vibe-coded eye candy (click to zoom the Type 30 display)
 
 <table>
   <tr>
