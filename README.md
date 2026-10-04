@@ -1,5 +1,5 @@
 # Agent-PDP1: A PDP-1 Hacker Replicant
-<img src="https://obsolescence.dev/images/pidp1/agent-pdp1.png" align="right" width="250">
+<img src="https://obsolescence.dev/images/pidp1/agent-pdp1-red4.webp" align="right" width="250">
 
 **An AI companion for the PiDP-1** — installs a tutor, guide, and capable copilot
 on your replica PDP-1. It sits next to you, and can see the display/operate the front panel just like you. Learn how to use the PDP-1 faster, and more enjoyably.
