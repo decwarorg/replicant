@@ -132,20 +132,21 @@ others later, things will evolve.
 
 ## What's inside
 
-**`skills/`** — the core of the project. Readable markdown files with PDP-1 knowledge. Frozen and human-curated.
-- **pdp1-assembly** — instruction set, MACRO-1, patterns
-- **pdp1-debugging** — the port-1040 protocol, recipes, the pdp1dbg helper client
-- **pdp1-plumbing** — ports, copilot etiquette, building / starting / loading / updating
-- **pdp1-type30-vision** — reading the screen (the pdp1_dpy tool)
-- **pdp1-tutor** — guided tours of PDP-1 applications (in preparation)
+**`skills/`** — core of the project. Readable markdown files with PDP-1 knowledge.
+- **pdp1-assembly** — instruction set, MACRO-1, programming patterns
+- **pdp1-debugging** — the new debugger protocol, recipes, a pdp1dbg helper client
+- **pdp1-plumbing** — knowledge of the simulator itself
+- **pdp1-type30-vision** — reading the screen (through a the pdp1_dpy tool)
+- **pdp1-tutor** — guided tours of PDP-1 applications (still WIP, but OK for now)
 - **pdp1-code-review** — structured code review workflow
 
-**`hermes-specific/`** — `SOUL.md` (the rules file Hermes reads on every
-request), and the `pdp1-learnings` template: the agent's own learning file. Read it and change it to your liking. Perhaps share it with us so we can improve the knowledge base.
+**`hermes-specific/`** 
+- **SOUL.md** - the rules that Hermes should keep in mind
+- **pdp1-learnings** template: the agent's own learning file. Read it and change it to your liking. Perhaps share it with us so we can improve the knowledge base.
 
 **`install.sh`** — the installer script. Tested on Raspberry Pi OS and Ubuntu.
 
-None of this is Hermes-specific — and nothing depends on DeepSeek, either.
+None of this needs to be Hermes-specific — and nothing depends on DeepSeek, either.
 The skills are plain markdown, and most any AI will absorb them; Claude Code,
 for instance, will happily adopt them. The API that lets an agent work the
 machine the same way you do is described in the skills files themselves.
