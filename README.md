@@ -1,4 +1,4 @@
-# Agent-PDP1
+# Agent-PDP1: A PDP-1 Hacker Replicant
 <img src="https://obsolescence.dev/images/pidp1/agent-pdp1.png" align="right" width="250">
 
 **An AI companion for the PiDP-1** — installs a tutor, guide, and capable copilot
