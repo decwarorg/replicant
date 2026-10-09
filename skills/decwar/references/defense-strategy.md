@@ -92,3 +92,25 @@ letters. Coordinates are vertical position then horizontal. Use an
 absolute location (`M 37 45`) or a relative one (`M R 4 -5`). Many
 players set relative as the default with `SET ICDEF REL` (often in
 `DECWAR.INI`) so `M 4 -5` suffices.
+
+## Tactical notes from live play
+
+- **Moving targets need fresh coordinates.** A phaser hits only the
+  exact sector, and ships move every few seconds, so a `TA`/scan read a
+  turn ago often aims at empty space. Re-scan immediately before firing,
+  or fire a torpedo spread across two or three likely sectors to bracket
+  the target. A ship is destroyed when its *damage* reaches 2500, not
+  when shields hit zero — a target at high shields can still die to a
+  small hit if its damage is already high.
+- **Objects block movement.** A move into a star, planet, or base is
+  answered with "Collision averted" and does not move you. When flying
+  without a scan you may burn several turns on collisions; scan the lane
+  first. Nova'd stars and the whole 4-sector ring around an enemy base
+  (flagged `!` by `SC … W`) are places to avoid lingering.
+- **Watch the prompt flags.** With `SET PROMPT INFORMATIVE` the `>`
+  prompt is preceded by `S` (shields down/<10%), `E` (energy <1000,
+  yellow alert), `D` (damage >2000), `nL` (life support critical) — a
+  quick read on how much trouble you are in.
+- **Team play.** Capture nearby neutral planets to silence their fire
+  and gain a nearby dock; radio teammates (`TE`) your zone. When badly
+  hurt with no base nearby, break off rather than trade shots.

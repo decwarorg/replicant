@@ -81,7 +81,12 @@ reach the command prompt (`>` with `SET PROMPT INFORMATIVE`, or
 prompt instead of DECWAR, ask the user how this host starts the game
 rather than trying commands that could change files or system state.
 Let the user enter credentials directly; leave passwords out of
-commands, files, skill text, and chat.
+commands, files, skill text, and chat. To end a session cleanly: `QUIT`
+DECWAR (and confirm), then log off the monitor — `KJOB` on TOPS-10 (a
+`?LOGOUT?` error means the host is TOPS-10, not TOPS-20) — and close
+the telnet connection. An agent running in a container may need the
+host's gateway address rather than `localhost` to reach a DEC-10 that
+runs on the host machine.
 
 ## Play the game
 
