@@ -97,6 +97,14 @@ To see some nice demonstrations:
 - new to the PDP-1? Ask for the **assembly tour**;
 - or just ask about the **history of demo coding** on the PDP-1.
 
+## Development environment
+
+Develop this project in its Linux Dev Container, not directly on macOS. Open
+the repository in VS Code with Docker available, then select **Reopen in
+Container** when prompted (or run **Dev Containers: Reopen in Container** from
+the Command Palette). The container uses Ubuntu and initializes the Hermes
+Agent submodule when it is created.
+
 ## Install
 
 ```bash

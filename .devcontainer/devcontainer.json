@@ -1,0 +1,13 @@
+{
+  "name": "Agent-PDP1 (Linux)",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    }
+  },
+  "postCreateCommand": "git submodule update --init --recursive",
+  "remoteUser": "vscode"
+}
