@@ -9,3 +9,10 @@
   Dev Container.
 - Initialize repository submodules from inside the container with
   `git submodule update --init --recursive`.
+- Run Git commands from the VS Code integrated terminal inside the container.
+  Preserve the repository's existing remote and authentication setup; do not
+  add Docker mounts, copy keys, or reconfigure credentials just to push.
+- Before reporting a push succeeded or failed, check the branch status. If
+  authentication fails in a non-interactive command shell, do not repeatedly
+  retry or change container configuration; ask the user to run the Git command
+  in the VS Code integrated terminal.

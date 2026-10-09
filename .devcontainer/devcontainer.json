@@ -8,12 +8,6 @@
       "version": "22"
     }
   },
-  "mounts": [
-    "source=${localEnv:SSH_AUTH_SOCK},target=/ssh-agent,type=bind"
-  ],
-  "remoteEnv": {
-    "SSH_AUTH_SOCK": "/ssh-agent"
-  },
   "postCreateCommand": "git submodule update --init --recursive",
   "remoteUser": "vscode"
 }
