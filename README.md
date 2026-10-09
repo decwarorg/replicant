@@ -103,7 +103,9 @@ Develop this project in its Linux Dev Container, not directly on macOS. Open
 the repository in VS Code with Docker available, then select **Reopen in
 Container** when prompted (or run **Dev Containers: Reopen in Container** from
 the Command Palette). The container uses Ubuntu and initializes the Hermes
-Agent submodule when it is created.
+Agent submodule when it is created. GitHub SSH access uses the host's forwarded
+SSH agent, so start the host agent and load your GitHub key before rebuilding
+or reopening the container.
 
 ## Install
 
