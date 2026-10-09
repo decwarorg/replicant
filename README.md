@@ -101,10 +101,14 @@ To see some nice demonstrations:
 
 ```bash
 cd /opt
-sudo git clone https://github.com/obsolescence/agent-pdp1.git
+sudo git clone --recurse-submodules https://github.com/obsolescence/agent-pdp1.git
 cd agent-pdp1
 ./install.sh
 ```
+
+Hermes Agent's source is tracked in the `hermes-agent/` submodule, pinned to a
+specific commit. If you already cloned this repository without submodules, run
+`git submodule update --init --recursive` to fetch it.
 
 > [!NOTE]
 > The install script will download and install Hermes for you through their headless install option. The user-friendly way. But Hermes is a bit of a moving target, it depends on - well, lots of Linux dependency hell it seems. So at some point in the future: if the Hermes install through my install script breaks: not a problem. Then, just install Hermes yourself, manually. Easily googled. And rerun the install script afterwards to let it complete the Hermes setup. But this install script is tested to work during 2026 and saved some hassle from a manual install.
