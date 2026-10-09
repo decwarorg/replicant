@@ -9,7 +9,7 @@
 #                              tools, 1040 smoke test. Leaves the machine
 #                              stopped for a clean start.
 #   2) Install Hermes Agent  — unattended Hermes install, connects DeepSeek
-#                              (or leaves that for later), wires the PDP-1
+#                              (or leaves that for later), wires the
 #                              skills, SOUL.md and pdp1-learnings into the
 #                              agent, verifies with a real round-trip.
 #   3) Update/restore Core Skills — pull the latest agent-pdp1 from github;
@@ -1063,10 +1063,10 @@ walk_hermes() {
     fi
     step_hint
 
-    step_begin 5 6 "Wiring the PDP-1 skills"
+    step_begin 5 6 "Wiring the skills"
     SKILLS_DIR="$HERMES_HOME/skills"
     if [ "$DRY" = 0 ]; then mkdir -p "$SKILLS_DIR"; fi
-    emit "Linking the frozen skills (a symlink means package updates reach them):"
+    emit "Linking the package skills (a symlink means package updates reach them):"
     if [ "$DRY" = 0 ]; then
         find "$SKILLS_DIR" -maxdepth 1 -type l -name 'pdp1-*' -delete 2>/dev/null || true
     fi
@@ -1077,7 +1077,7 @@ walk_hermes() {
         emit "  $b"
         n=$((n+1))
     done
-    step_item "$n PDP-1 skills linked"
+    step_item "$n skills linked"
     local LD="$SKILLS_DIR/pdp1-learnings"
     if [ -e "$LD" ]; then
         step_ask "answer the y/n question at the bottom"
@@ -1119,7 +1119,7 @@ walk_hermes() {
         step_item "Skills verified"
     else
         local ok=1 s
-        for s in pdp1-assembly pdp1-code-review pdp1-debugging \
+        for s in decwar pdp1-assembly pdp1-code-review pdp1-debugging \
                  pdp1-plumbing pdp1-tutor pdp1-type30-vision; do
             [ -d "$SKILLS_DIR/$s" ] || ok=0
         done

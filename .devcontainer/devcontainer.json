@@ -1,5 +1,5 @@
 {
-  "name": "Agent-PDP1 (Linux)",
+  "name": "DECWAR Replicant (Linux)",
   "build": {
     "dockerfile": "Dockerfile"
   },
@@ -8,6 +8,5 @@
       "version": "22"
     }
   },
-  "postCreateCommand": "git submodule update --init --recursive",
   "remoteUser": "vscode"
 }

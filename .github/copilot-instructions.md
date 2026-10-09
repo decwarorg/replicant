@@ -7,7 +7,7 @@
   it in the container before running project commands.
 - Host-side Docker commands are permitted only to build, start, or manage the
   Dev Container.
-- Initialize repository submodules from inside the container with
+- If submodules are added, initialize them from inside the container with
   `git submodule update --init --recursive`.
 - Run Git commands from the VS Code integrated terminal inside the container.
   Preserve the repository's existing remote and authentication setup; do not

@@ -1,10 +1,7 @@
-The frozen pdp1 skill set lives here (six skills).
+The curated DECWAR skill lives in decwar/SKILL.md.
 
-update.sh: run to get the latest skills from github. Unprotects, pulls, re-protects.
-curate.sh: remove write protection so the maintainer can edit these canonical skills.
-protect.sh: write-protect again, so confused agents will not mess up the skills.
+It guides Hermes through interactive DEC-10 telnet sessions in coach,
+assist, and explicitly authorized play modes. It is linked into Hermes
+by install.sh.
 
-pdp1-learnings is NOT in this directory on purpose. It is a local,
-per-agent file: setup-hermes.sh copies it into the agent's home, and
-the agent appends to it freely. It must never be symlinked, protected,
-or pulled over.
+update.sh: run to fetch the latest package contents.
